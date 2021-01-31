@@ -49,19 +49,19 @@
             </div>
             <div class="input-group f-class">
                 <div>
-                    <h5 id="fClass-total">Fast-Class ($150)</h5>
-                    <input id="fClass-count" class="inp-style inp-width" type="number" value="1">
+                    <h5 id="firstClass-total">Fast-Class ($150)</h5>
+                    <input id="firstClass-count" class="inp-style inp-width" type="number" value="0">
                 </div>
                 <div class="input-group number-spinner">
-                    <button onclick="ticketItemChange('fClass', false)" class="btn btn-default"><i class="fas fa-minus"></i>-</button>
-                    <button onclick="ticketItemChange('fClass', true)" class="btn btn-default"><i class="fas fa-plus"></i>+</button>
+                    <button onclick="ticketItemChange('firstClass', false)" class="btn btn-default">-</button>
+                    <button onclick="ticketItemChange('firstClass', true)" class="btn btn-default">+</button>
                 </div>
             </div>
             
             <div class="input-group f-class">
                 <div>
                     <h5 id="economy-total">Economy ($100)</h5>
-                    <input id="economy-count" class="inp-style inp-width" type="number" value="1">
+                    <input id="economy-count" class="inp-style inp-width" type="number" value="0">
                 </div>
                 <div class="input-group number-spinner">
                     <button onclick="ticketItemChange('economy', false)" class="btn btn-default"><i class="fas fa-minus"></i>-</button>
@@ -108,7 +108,7 @@
     <!--Thank You-->
     <script>
        function ticketItemChange(ticket, isPlus) {
-            const ticketCount = getInputValue(ticket);
+            let ticketCount = getInputValue(ticket);
             let fClassNewCount = ticketCount;
             if (isPlus == true) {
                 ticketNewCount = ticketCount + 1;
@@ -119,7 +119,7 @@
 
             document.getElementById(ticket + '-count').value = ticketNewCount;
             let ticketTotal = 0;
-            if (ticket == 'fClass') {
+            if (ticket == 'firstClass') {
                 tickettTotal = ticketNewCount * 150;
             }
             if (ticket == 'economy') {
@@ -130,13 +130,13 @@
         }
 
         function calculateTotal() {
-            const fClassInput = getInputValue('fClass');
-            const economyInput = getInputValue('economy');
+            let fClassInput = getInputValue('firstClass');
+            let economyInput = getInputValue('economy');
 
-            const totalPrice = fClassInput * 150 + economyInput * 100;
+            let totalPrice = fClassInput * 150 + economyInput * 100;
             document.getElementById('total-price').innerText = '$' + totalPrice;
 
-            const tax = totalPrice * 0.1;
+            let tax = totalPrice * 0.1;
             document.getElementById('tax-amount').innerText = '$' + tax;
 
             let grandTotal = totalPrice + tax;
@@ -144,8 +144,8 @@
         }
 
         function getInputValue(ticket) {
-            const ticketInput = document.getElementById(ticket + '-count');
-            const ticketCount = parseInt(ticketInput.value);
+            let ticketInput = document.getElementById(ticket + '-count');
+            let ticketCount = parseInt(ticketInput.value);
             return ticketCount;
         }
     </script>)
